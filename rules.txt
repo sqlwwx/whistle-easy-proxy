@@ -1,0 +1,105 @@
+# EasyProxy — auto-loaded global rules
+# Routes interception-rule domains to the easy-proxy plugin protocol,
+# which triggers server hook for SNI rewrite / proxy / cache / headers / etc.
+# No manual configuration needed. Remove lines to disable per-domain.
+
+# GitHub
+github.com easy-proxy://
+api.github.com easy-proxy://
+github.githubassets.com easy-proxy://
+opengraph.githubassets.com easy-proxy://
+*.githubusercontent.com easy-proxy://
+collector.github.com easy-proxy://
+gist.github.com easy-proxy://
+*.github.io easy-proxy://
+*.gravatar.com easy-proxy://
+camo.githubusercontent.com easy-proxy://
+customer-stories-feed.github.com easy-proxy://
+user-images.githubusercontent.com easy-proxy://
+private-user-images.githubusercontent.com easy-proxy://
+avatars.githubusercontent.com easy-proxy://
+
+# Google
+fonts.googleapis.com easy-proxy://
+fonts.gstatic.com easy-proxy://
+*.googleapis.com easy-proxy://
+ajax.googleapis.com easy-proxy://
+kubernetes-charts.storage.googleapis.com easy-proxy://
+/^(?!.*(translate-pa).google(?:apis|usercontent)?.com).*google(?:apis|usercontent)?.com$/ easy-proxy://
+/^.*\.(youtube\.com|gstatic\.com|youtube\.nocookie\.com|youtu\.be|ggpht\.com|i\.ytimg\.com|blogger\.com|doodles\.google|about\.google|android\.com)$/ easy-proxy://
+/^.*\.google\.com(\.\w+)?$/ easy-proxy://
+/^(?<pre>.*).googlevideo.com$/ easy-proxy://
+www.gstatic.com easy-proxy://
+www.google.com easy-proxy://
+themes.googleapis.com easy-proxy://
+themes.googleusercontent.com easy-proxy://
+/^clients.*\.google\.com$/ easy-proxy://
+www.googleapis.com easy-proxy://
+/^lh.*\.googleusercontent\.com$/ easy-proxy://
+*.ggpht.com easy-proxy://
+i.ytimg.com easy-proxy://
+
+# Microsoft / Docker
+*.windows.net easy-proxy://
+ms-sso.copilot.microsoft.com easy-proxy://
+www.docker.com easy-proxy://
+login.docker.com easy-proxy://
+download.docker.com easy-proxy://
+hub.docker.com easy-proxy://
+*.docker.com easy-proxy://
+
+# Pixiv
+*.pixiv.net easy-proxy://
+*.pixiv.org easy-proxy://
+*.pximg.net easy-proxy://
+*.ads-pixiv.net easy-proxy://
+*.nikke-global.com easy-proxy://
+i.pximg.net easy-proxy://
+
+# YouTube
+*.youtube.com easy-proxy://
+*.youtu.be easy-proxy://
+*.youtube-nocookie.com easy-proxy://
+
+# Steam
+*.steamserver.net easy-proxy://
+images.steamusercontent.com easy-proxy://
+*steamcommunity.com easy-proxy://
+/^(?!.*cloudflare).*steamstatic.com$/ easy-proxy://
+*.steampowered.com easy-proxy://
+
+# CDN / 镜像
+cdn.jsdelivr.net easy-proxy://
+*.greasyfork.org easy-proxy://
+*.cn-greasyfork.org easy-proxy://
+*.huggingface.co easy-proxy://
+cn.vuejs.org easy-proxy://
+jsd.proxy.aks.moe easy-proxy://
+fastly.jsdelivr.net easy-proxy://
+jsdelivr.pai233.top easy-proxy://
+raw.incept.pw easy-proxy://
+packages.elastic.co easy-proxy://
+ppa.launchpad.net easy-proxy://
+downloads.openwrt.org easy-proxy://
+registry.npmjs.org easy-proxy://
+repo1.maven.org easy-proxy://
+
+# 其他
+*z-library.sk easy-proxy://
+*z-lib.help easy-proxy://
+external-content.duckduckgo.com easy-proxy://
+*duckduckgo.com easy-proxy://
+*onedrive.live.com easy-proxy://
+*dropbox.com easy-proxy://
+*f-droid.org easy-proxy://
+fdroid.org easy-proxy://
+*apkmirror.com easy-proxy://
+*.msecnd.net easy-proxy://
+*.instagram.com easy-proxy://
+*.cdninstagram.com easy-proxy://
+*.intercom.io easy-proxy://
+*startpage.com easy-proxy://
+*.brave.com easy-proxy://
+*.s3.1amazonaws1.com easy-proxy://
+*.carbonads.com easy-proxy://
+*.buysellads.com easy-proxy://
