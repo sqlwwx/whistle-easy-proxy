@@ -12,7 +12,6 @@
 - [配置文件](#配置文件)
 - [加速原理](#加速原理)
 - [故障排查](#故障排查)
-- [从 easy-proxy-cli 迁移](#从-easy-proxy-cli-迁移)
 - [License](#license)
 
 ## 安装
@@ -870,42 +869,6 @@ curl -v -x http://127.0.0.1:8899 https://www.google.com --max-time 10
 ```
 
 ---
-
-## 从 easy-proxy-cli 迁移
-
-如果你之前使用 `easy-proxy-cli`，参考 [迁移指南](./docs/migration-guide.md) 了解迁移步骤和命令对照。
-
-### 主要变化
-
-| 对比维度 | easy-proxy-cli | whistle.easy-proxy |
-|----------|----------------|-------------------|
-| 架构 | 独立 CLI + Fastify 服务器 + whistle 子进程 | 纯 whistle 插件 + 轻量 CLI |
-| 进程管理 | 自己管理 whistle 生命周期 | 由 `easy-proxy start/stop` 管理 |
-| 系统代理 | 自己调用 OS 命令 | `easy-proxy proxy` 处理 |
-| 证书管理 | 自己生成 + 安装证书 | `easy-proxy cert install` 处理 |
-| 规则存储 | 自己维护 `rules.json` + HTTP 同步 | 直接用 whistle values |
-| 代码量 | ~3200 行 TS/JS | ~1200 行 JS（纯 JavaScript） |
-| 依赖 | fastify, ws, tree-kill, nanoid... | commander + whistle |
-| 编译 | TypeScript 三层编译（core/cli/server） | 无需编译，直接运行 |
-
-### 命令对照
-
-| 旧命令 | 新命令 | 说明 |
-|--------|--------|------|
-| `easy-proxy start` | `easy-proxy start --init` | 启动 + 自动设代理 + 装证书 |
-| `easy-proxy stop` | `easy-proxy stop` | 停止 whistle |
-| `easy-proxy proxy on` | `easy-proxy proxy on` | 开启系统代理 |
-| `easy-proxy proxy off` | `easy-proxy proxy off` | 关闭系统代理 |
-| `easy-proxy cert install` | `easy-proxy cert install` | 安装根证书 |
-| `easy-proxy update` | `npm update -g whistle.easy-proxy` | 更新插件 |
-
-### 配置迁移
-
-配置文件自动迁移，无需手动操作。迁移过程：
-
-1. 检测旧版配置文件
-2. 迁移到新版配置格式
-3. 备份旧配置文件
 
 ## 与其他 whistle 插件配合
 
