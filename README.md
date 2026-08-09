@@ -329,6 +329,15 @@ easy-proxy proxy upstream sync                  # 手动同步规则到 whistle
 easy-proxy proxy upstream edit
 # （编辑器中按格式输入代理名称、URL 和绑定域名，保存即可）
 
+# 切换/停用代理地址：一个代理可写多行地址，未注释的生效，注释掉的为备用
+#   例如：
+#   corp
+#   # http://10.0.0.1:8080   ← 备用旧地址（已停用）
+#   http://127.0.0.1:8080    ← 当前生效地址
+#   github.com
+#
+#   若所有地址行都被 # 注释，则该代理整体停用（块保留，取消注释即可恢复）
+
 # 查看配置
 easy-proxy proxy upstream status
 

@@ -62,7 +62,8 @@ test('parse 全是注释行返回空数组', () => {
 
 // 6. parse 多个连续空行
 test('parse 多个连续空行视为一个分隔符，不产生空代理', () => {
-  const text = 'corp\nhttp://10.0.0.1:8080\ngithub.com\n\n\n\nhome\nhttp://192.168.1.100:3128\ninternal.com';
+  const text =
+    'corp\nhttp://10.0.0.1:8080\ngithub.com\n\n\n\nhome\nhttp://192.168.1.100:3128\ninternal.com';
   const result = parse(text);
   assert.equal(result.length, 2);
   assert.equal(result[0].name, 'corp');
@@ -143,12 +144,106 @@ test('validate URL 无效抛错', () => {
 
 test('validate 重名抛错', () => {
   assert.throws(
-    () => validate([
-      { name: 'a', url: 'http://x.com', domains: [] },
-      { name: 'A', url: 'http://y.com', domains: [] },
-    ]),
-    /重复|重名|duplicate/i,
+    () =>
+      validate([
+        { name: 'a', url: 'http://x.com', domains: [] },
+        { name: 'A', url: 'http://y.com', domains: [] },
+      ]),
+    /重复|重名|duplicate/i
   );
+});
+
+// 14. parse 注释掉地址行 → 停用代理（disabled: true，块结构保留）
+test('parse 注释掉地址行：标记为停用并保留名称与域名', () => {
+  const text = [
+    'corp',
+    '# http://10.0.0.1:8080',
+    'github.com',
+    '',
+    'git',
+    'http://proxy-b.com:8080',
+    'google.com',
+  ].join('\n');
+  const result = parse(text);
+  assert.equal(result.length, 2);
+  assert.deepEqual(result[0], {
+    name: 'corp',
+    url: 'http://10.0.0.1:8080',
+    domains: ['github.com'],
+    disabledUrls: ['http://10.0.0.1:8080'],
+    disabled: true,
+  });
+  assert.equal(result[1].disabled, undefined);
+});
+
+// 15. parse 注释掉的旧地址 + 新的生效地址 → 切换地址（未注释的生效）
+test('parse 注释旧地址 + 新地址：生效地址为未注释的那个', () => {
+  const text = ['corp', '# http://10.0.0.1:8080', 'http://127.0.0.1:8080', 'github.com'].join('\n');
+  const result = parse(text);
+  assert.equal(result.length, 1);
+  assert.deepEqual(result[0], {
+    name: 'corp',
+    url: 'http://127.0.0.1:8080',
+    domains: ['github.com'],
+    disabledUrls: ['http://10.0.0.1:8080'],
+  });
+});
+
+// 16. parse 多个生效地址 → 抛错
+test('parse 多个生效地址时抛出错误', () => {
+  const text = 'corp\nhttp://10.0.0.1:8080\nhttp://127.0.0.1:8080\ngithub.com';
+  assert.throws(() => parse(text), /多个生效地址|只能有一个/i);
+});
+
+// 17. parse 非 URL 的注释行不影响解析
+test('parse 非 URL 注释行仍被忽略，不影响代理解析', () => {
+  const text = 'corp\n# 随意注释\nhttp://10.0.0.1:8080\ngithub.com';
+  const result = parse(text);
+  assert.equal(result.length, 1);
+  assert.equal(result[0].name, 'corp');
+  assert.equal(result[0].url, 'http://10.0.0.1:8080');
+  assert.equal(result[0].disabled, undefined);
+});
+
+// 18. format 停用代理以 # 前缀输出，round-trip 保留
+test('format 停用代理地址加 # 前缀，parse 后可恢复', () => {
+  const text = 'corp\n# http://10.0.0.1:8080\ngithub.com';
+  const parsed = parse(text);
+  const formatted = format(parsed);
+  assert.equal(formatted, text);
+  // 二次 round-trip 一致
+  assert.deepEqual(parse(formatted), parsed);
+});
+
+// 19. format 多地址切换 round-trip 保留
+test('format 多地址切换：注释旧地址 + 生效新地址 round-trip 保留', () => {
+  const text = 'corp\n# http://10.0.0.1:8080\nhttp://127.0.0.1:8080\ngithub.com';
+  const parsed = parse(text);
+  assert.equal(parsed[0].url, 'http://127.0.0.1:8080');
+  const formatted = format(parsed);
+  assert.equal(formatted, text);
+  assert.deepEqual(parse(formatted), parsed);
+});
+
+// 20. validate 保留 disabled 与 disabledUrls 标记
+test('validate 保留 disabled 与 disabledUrls 标记', () => {
+  const proxies = [
+    {
+      name: 'corp',
+      url: 'http://127.0.0.1:8080',
+      domains: ['github.com'],
+      disabledUrls: ['http://10.0.0.1:8080'],
+    },
+  ];
+  const result = validate(proxies);
+  assert.deepEqual(result[0].disabledUrls, ['http://10.0.0.1:8080']);
+  assert.equal(result[0].disabled, undefined);
+});
+
+// 21. buildEditContent 说明文案包含停用代理的用法
+test('buildEditContent 头部说明包含停用代理的用法', () => {
+  const content = buildEditContent([]);
+  assert.match(content, /停用该代理/);
 });
 
 // 额外：buildEditContent 包含注释头部
