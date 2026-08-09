@@ -40,8 +40,9 @@ easy-proxy --version
 如果你在本地开发此插件，需要将包链接到全局 whistle 的插件目录：
 
 ```bash
-# 在项目根目录执行
-npm link
+# 在项目根目录执行（本项目强制使用 pnpm）
+pnpm install
+pnpm link --global
 
 # 然后启动 whistle
 easy-proxy start --init
