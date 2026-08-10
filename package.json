@@ -13,6 +13,7 @@
   },
   "author": "sqlwwx",
   "license": "MIT",
+  "packageManager": "pnpm@11.18.0",
   "files": [
     "index.js",
     "bin/",
@@ -51,6 +52,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "start": "easy-proxy start",
     "stop": "easy-proxy stop",
     "test": "node --test",
