@@ -39,9 +39,10 @@
     "hosts"
   ],
   "dependencies": {
-    "chalk": "^4.1.2",
-    "commander": "^12.1.0",
-    "whistle": "^2.10.8"
+    "chalk": "^6.0.1",
+    "commander": "^15.0.0",
+    "node-forge": "^1.4.0",
+    "whistle": "^2.10.10"
   },
   "engines": {
     "node": ">=22.0.0"
@@ -62,6 +63,6 @@
     "prepublishOnly": "npm test"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.5.7"
+    "@biomejs/biome": "^2.5.14"
   }
 }
