@@ -136,7 +136,7 @@ TCP 隧道 → IP 直连 + TLS 握手
 |------|---------|
 | GitHub 无法访问 | `easy-proxy start --init && easy-proxy accel on && easy-proxy proxy on` |
 | 访问速度慢 | `easy-proxy accel dns` 刷新缓存，或在 Web 面板测速选 IP |
-| 证书不受信任 | `easy-proxy cert install` 重新安装根证书 |
+| 证书不受信任 | `easy-proxy start` 重新安装根证书 |
 
 **完整故障排查** → [docs/troubleshooting.md](docs/troubleshooting.md)
 

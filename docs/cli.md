@@ -225,10 +225,11 @@ easy-proxy intercept reset         # 重置为默认拦截规则
 
 ## 证书管理
 
+证书由 `easy-proxy start` 自动管理（合规校验 + 不合规自动重签 + 安装到系统信任库）。
+
 ```bash
-easy-proxy cert install          # 安装根证书
-easy-proxy cert install --force  # 强制重新生成并安装根证书
-easy-proxy cert check            # 检查证书状态和有效期
+easy-proxy start        # 启动并自动处理证书
+easy-proxy health       # 查看证书状态（含有效期、信任状态）
 ```
 
 **cert check 输出示例**：

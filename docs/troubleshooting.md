@@ -128,20 +128,15 @@ easy-proxy rule edit <名称>
 **排查步骤**：
 
 ```bash
-# 1. 检查证书状态
-easy-proxy cert check
-
-# 2. 检查证书信任状态
+# 检查证书状态（有效期、信任状态）
 easy-proxy health
 ```
 
 **解决方案**：
 
 ```bash
-# 1. 重新安装证书
-easy-proxy cert install
-
-# 2. 按照提示执行 sudo 命令信任证书
+# 重新安装证书（自动检测并修复合规性）
+easy-proxy start
 ```
 
 ## 上游代理不工作
