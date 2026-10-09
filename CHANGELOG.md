@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/sqlwwx/easy-proxy/compare/v1.2.1...v1.3.0) (2026-10-09)
+
+
+### Features
+
+* 维护 shell-env.sh 提供 setproxy/unsetproxy 代理开关与 CA 变量，Node 系工具经 env 走 whistle 使 mirror 生效 ([461047d](https://github.com/sqlwwx/easy-proxy/commit/461047d919f8ca0e8ae47e3f2338c527938880cb))
+
 ### [1.2.1](https://github.com/sqlwwx/easy-proxy/compare/v1.2.0...v1.2.1) (2026-10-09)
 
 
