@@ -163,12 +163,10 @@ easy-proxy proxy status          # 检查系统代理是否指向 whistle
 ## Bypass 域名管理
 
 ```bash
-easy-proxy proxy bypass show                 # 查看当前跳过列表
-easy-proxy proxy bypass set "a.com,b.com"    # 设置跳过列表（逗号分隔）
-easy-proxy proxy bypass add "*.local"        # 添加一个跳过域名
-easy-proxy proxy bypass remove "*.local"     # 移除一个跳过域名
-easy-proxy proxy bypass reset                # 重置为默认列表
+easy-proxy proxy bypass    # 编辑跳过列表（打开 $EDITOR，一行一个域名）
 ```
+
+编辑器内一行一个域名，`#` 开头为注释；清空所有域名 = 恢复默认列表。
 
 ### 默认跳过列表
 
@@ -186,7 +184,7 @@ easy-proxy proxy bypass reset                # 重置为默认列表
 | Mozilla | `*.mozilla.org`, `*.firefox.com` | Firefox/Mozilla 服务 |
 | 其他 | `*.wps.com`, `*.jd.com`, `*.360.com`, `*.10086.com` | 其他国内/直连服务 |
 
-> 完整列表见 [lib/cli/bypass-domains.js](../lib/cli/bypass-domains.js)。使用 `easy-proxy proxy bypass show` 可查看当前生效的列表。
+> 完整列表见 [lib/cli/bypass-domains.js](../lib/cli/bypass-domains.js)。使用 `easy-proxy proxy bypass` 可查看和修改当前列表。
 
 > 底层通过 `w2 proxy -x "..."` 实现，修改 bypass 列表后需重新执行 `easy-proxy proxy on` 生效。
 
