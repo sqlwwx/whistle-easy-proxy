@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.1](https://github.com/sqlwwx/easy-proxy/compare/v1.2.0...v1.2.1) (2026-10-09)
+
+
+### Bug Fixes
+
+* npm 镜像规则仅重定向 GET（includeFilter m:get），publish 的 PUT/POST 直达官方源 ([7894dc9](https://github.com/sqlwwx/easy-proxy/commit/7894dc92e6c5e40509e8909487e9c02e55e9d2ae))
+
 ## [1.2.0](https://github.com/sqlwwx/easy-proxy/compare/v1.1.0...v1.2.0) (2026-10-09)
 
 
