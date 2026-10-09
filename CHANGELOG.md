@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/sqlwwx/easy-proxy/compare/v1.1.0...v1.2.0) (2026-10-09)
+
+
+### Features
+
+* 内置镜像源加速 — mirror on/off/status，npm/pip/go/node/conda/huggingface 302 重定向到国内镜像 ([c904d75](https://github.com/sqlwwx/easy-proxy/commit/c904d75eddc71b088cdc5572252b1190bbc82e33))
+* bypass 简化为 easy-proxy proxy bypass 直接进编辑器（一行一个域名），移除 show/set/add/remove/reset 子命令 ([53a891b](https://github.com/sqlwwx/easy-proxy/commit/53a891bb8ba930f44d51bb254802775cbc62f497))
+* start 自动同步镜像规则集，启动带 --dnsServer 223.5.5.5 绕过污染 DNS ([5cee304](https://github.com/sqlwwx/easy-proxy/commit/5cee304bee179015a84d3c47cefdbfed685b1965))
+
+
+### Bug Fixes
+
+* ca-bundle 丢失 — 重签证书不再 unlink 合并包（staleness 检查自动重建），改原子写 ([63866e2](https://github.com/sqlwwx/easy-proxy/commit/63866e28ba74c7f887ca8c9e344bffbf6af79eab))
+
 ## 1.1.0 (2026-09-29)
 
 
