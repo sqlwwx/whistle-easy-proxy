@@ -61,6 +61,7 @@ open http://local.whistlejs.com/plugin.easy-proxy/
 | `easy-proxy accel dns` | 刷新 DNS 缓存 |
 | `easy-proxy host add <域名> <IP>` | 添加手动 IP 覆盖 |
 | `easy-proxy health` | 综合健康检查 |
+| `easy-proxy mirror` | 开发镜像源加速（npm/pip/go，302 重定向到国内镜像） |
 | `easy-proxy status` | 查看整体状态 |
 
 **完整命令参考** → [docs/cli.md](docs/cli.md)
