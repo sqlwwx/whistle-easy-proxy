@@ -89,9 +89,21 @@ open http://local.whistlejs.com/plugin.easy-proxy/
   "upstreamProxies": [],        // 上游代理列表
   "proxyBypassDomains": null,   // 跳过代理的域名列表（null 表示默认 150+ 条）
   "interceptEnabled": true,     // 拦截规则总开关
-  "interceptRules": {}           // 自定义拦截规则（空对象使用默认 80+ 条）
+  "interceptRules": {},          // 自定义拦截规则（空对象使用默认 80+ 条）
+  "httpsIntercept": {            // HTTPS 证书拦截（解密）
+    "enabled": false,            // false: 默认不解密（按规则自动生成白名单）；true: 全部解密
+    "whitelist": []              // 额外补录需要解密的域名，一般不用填
+  }
 }
 ```
+
+**HTTPS 默认不拦截，白名单自动生成**：whistle 默认只做隧道转发、不改证书。easy-proxy 会按已启用的
+规则自动推导哪些域名需要解密——凡是有 host / redirect / resHeaders / 插件等改写规则的域名，自动注入
+`<域名> enable://intercept`；纯隧道协议（`proxy://` `tunnel://` `socks://` `pac://`）不入选。白名单
+写在 whistle 规则集 `easy-proxy-https-whitelist` 里，每次 `start`、`rule add/edit/enable/disable`、
+`mirror on/off` 后自动重算，所以只管写规则，不用维护第二份名单。`httpsIntercept.whitelist` 只用于
+补录「没有规则但想在 whistle 里看流量」的域名。未解密的域名 whistle 改不了它的 HTTPS 请求，
+`proxy://` 上游转发不受影响。
 
 **配置说明 / 热重载 / 验证规则** → [docs/architecture.md](docs/architecture.md)
 
