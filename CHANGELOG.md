@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/sqlwwx/easy-proxy/compare/v1.3.0...v1.4.0) (2026-11-09)
+
+
+### Features
+
+* HTTPS 默认不拦截，按已启用规则自动生成解密白名单 ([8be30c8](https://github.com/sqlwwx/easy-proxy/commit/8be30c891c8570ed756a7897456bb6a8ea75f158))
+
+
+### Bug Fixes
+
+* --version 读取 package.json 而非硬编码 1.0.0 ([999d253](https://github.com/sqlwwx/easy-proxy/commit/999d2535dd8be6d2ab467fbf78005ae138e467e6))
+* setproxy/unsetproxy 维护 NODE_USE_ENV_PROXY 使 Node fetch 走代理并屏蔽实验性警告 ([34f574d](https://github.com/sqlwwx/easy-proxy/commit/34f574d4dc5735a859179f60026f857ca5ed0e39))
+
 ## [1.3.0](https://github.com/sqlwwx/easy-proxy/compare/v1.2.1...v1.3.0) (2026-10-09)
 
 
